@@ -5,19 +5,41 @@ import {
   RiEyeCloseLine,
   RiEyeLine,
 } from "react-icons/ri";
+import { toast } from "react-toastify";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if ([email, password].includes("")) {
+      toast.error("Se detecto campo vacio", { theme: "colored" });
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("El password debe contener al menos 6 caracteres", {
+        theme: "colored",
+      });
+      return;
+    }
+    toast.success("campos validos", { theme: "colored" });
+  };
   return (
-    <div className="bg-white rounded-lg p-8 w-96">
+    <div className="bg-white rounded-lg p-8 w-full md:w-96">
       <div className="mb-10">
         <h1 className="text-3xl uppercase font-bold text-center">
           Iniciar sesion
         </h1>
       </div>
-      <form className="bg-white p-8 flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 flex flex-col gap-4"
+      >
+        {/* *********** email *************** */}
         <div className="relative">
           <RiMailLine className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" />
           <input
@@ -26,8 +48,12 @@ export default function Login() {
             className="border border-gray-200 px-8 py-2 w-full outline-none rounded-lg "
             id=""
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+
+        {/* *********** password *************** */}
         <div className="relative">
           <RiLock2Line className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" />
           <input
@@ -36,6 +62,8 @@ export default function Login() {
             className="border border-gray-200 px-8 py-2 w-full outline-none rounded-lg "
             id=""
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {!showPassword ? (
             <RiEyeLine
