@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 export default function AuthLayout() {
   return (
-    <div className="bg-red-200 min-h-screen flex items-center justify-center">
-      hola que tal
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <Outlet />
     </div>
   );
