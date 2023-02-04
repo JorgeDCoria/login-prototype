@@ -5,6 +5,7 @@ import {
   RiEyeCloseLine,
   RiEyeLine,
 } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +27,7 @@ export default function Login() {
       });
       return;
     }
-    toast.success("campos validos", { theme: "colored" });
+    toast.success("campos validos", { theme: "colored " });
   };
   return (
     <div className="bg-white rounded-lg p-8 w-full md:w-96">
@@ -77,12 +78,29 @@ export default function Login() {
             />
           )}
         </div>
+        <div className="text-right">
+          <Link
+            className="text-gray-500 hover:text-sky-600 transition-all hover:underline"
+            to={"/forget-password"}
+          >
+            Olvide mi password
+          </Link>
+        </div>
         <div>
           <button className="bg-sky-600 text-white w-full py-2 px-4 rounded-lg hover:bg-sky-800 hover:scale-105 transition-all">
             Ingresar
           </button>
         </div>
       </form>
+      <div className="text-center">
+        ¿No tienes una Cuenta?{" "}
+        <Link
+          className="font-bold text-sky-700 hover:underline transition-all"
+          to={"/register"}
+        >
+          Registrate
+        </Link>
+      </div>
     </div>
   );
 }
