@@ -31,7 +31,7 @@ export default function Login() {
   };
   return (
     <div className="bg-white rounded-lg p-8 w-full md:w-96">
-      <div className="mb-10">
+      <div className="mb-8">
         <h1 className="text-3xl uppercase font-bold text-center">
           Iniciar sesion
         </h1>
@@ -92,6 +92,14 @@ export default function Login() {
           </button>
         </div>
       </form>
+      <div className="text-center mb-4">
+        <Link
+          className="font-bold text-sky-700 hover:underline transition-all"
+          to={"/forget-password"}
+        >
+          ¿Olvidaste tu password?
+        </Link>
+      </div>{" "}
       <div className="text-center">
         ¿No tienes una Cuenta?{" "}
         <Link
